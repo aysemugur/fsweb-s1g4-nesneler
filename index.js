@@ -15,11 +15,11 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
+function MenuElemaniOlustur(a, b, c){
+	let menu = {isim:a, fiyat:b, kategori:c};
+	return menu;
 }
-
-
+console.log(a, b, c);
 
 /*  Görev 1b (otomatik test yok): 
 	Fonksiyonu çağırın!
@@ -28,11 +28,10 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 	2. Kendi seçtiğiniz isim,fiyat ve kategorileri kullanarak en az 3 menü elemanı oluşturun 
 	3. Tüm döndürülen sonuçları konsolda gözlemleyin (console.log)
 	
+
+	
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
-*/
-
-
-
+*/ 
 /* Görev 2: 
 	Özel bir öğle yemeği yiyorsun! Öğretmen ve öğrencilere %25, diğer kişilere %10 indirim var. Aşağıdaki burger nesnesine, indirimi fiyatı otomatik olarak hesaplayan bir metot ekleyin.
 	
@@ -49,11 +48,14 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 const burger = {
 	isim: "Burger", 
 	fiyat: 18, 
-	kategori: "Öğle Yemeği", 
-
+	kategori: "Öğle Yemeği",
+	indirim: (param)=>{
+		if (param === 'öğretmen'|| param === "öğrenci"){
+			return burger.fiyat * 0.75;
+			}
+		return burger.fiyat * 0.9;
+	}
 }
-
-
 
 ///////////////Değerlendirmeler (MVP)///////////////////
 const degerlendirmeler = [
@@ -71,7 +73,10 @@ const degerlendirmeler = [
 	Yukarıdaki degerlendirmeler dizisini(array) kullanarak:
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
-
+let bulunanIsim = degerlendirmeler.find(item => item.isim === "Ahmet")
+let abc = `${bulunanIsim.isim} isimli kişi ${bulunanIsim.puan} puan verdi ve şunları yazdı: ${bulunanIsim.geribildirim}`
+console.log(abc);
+ 
 
 
 /*  Görev 4 (ototest yok):  
@@ -94,11 +99,16 @@ const degerlendirmeler = [
 */
 
 
-function DegerlendirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
+function DegerlendirmeEkle(degerlendirmeler, isim, puan, geribildirim){
+	const Degerlendirme ={isim, puan, geribildirim};
+		let NewObject=degerlendirmeler.concat(Degerlendirme);
+		console.log(NewObject);
+		return NewObject;
+		
+	
 	
 }
-
+DegerlendirmeEkle(degerlendirmeler, 'Hurşut', 2, 'Boktan yemekler!')
 
 
 /*  Görev 6: 
@@ -112,10 +122,12 @@ function DegerlendirmeEkle(/*Kodlar buraya */){
 */
 
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
-
+function AnahtardanDegerlendirmeAl(dizi,indeks) {
+	let review = dizi[indeks]
+	let YeniDegerlendirme = `${review.isim} isimli kişi ${review.puan} puan verdi ve şunları yazdı: ${review.geribildirim}`;
+	return YeniDegerlendirme;
 }
+AnahtardanDegerlendirmeAl(degerlendirmeler,0)
 
 
 
@@ -132,13 +144,13 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 */
 
 
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function SonDegerlendirmeyiAl(dizi) {
+	return AnahtardanDegerlendirmeAl(dizi, dizi.length - 1)
 } 
 
 
 
-/////////////// BONUS  GÖRVLER////////////////////
+/////////////// BONUS  GÖREVLER////////////////////
 
 /**  BONUS 1:  
 	PuanaGoreDegerlendirmeAl fonksiyonuna aşağıdakileri uygulayın:
